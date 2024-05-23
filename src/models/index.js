@@ -8,7 +8,7 @@ const dialectOptions = process.env.NODE_ENV === 'production' ? {
       rejectUnauthorized: false
     }
   }: null;
-
+ 
 
 const sequelize = new Sequelize(
     process.env.DATABASE_URL,

@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(64),
         },
         address: {
-            type: Sequelize.STRING(128),
+            type: Sequelize.STRING(128), 
         },
         phone: {
             type: Sequelize.STRING(16),

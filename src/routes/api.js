@@ -11,4 +11,4 @@ router.get('/', (req, res) => {
 });
 router.use('/employees', require('./employee.route'));
 
-module.exports = router;
+module.exports = router; 
