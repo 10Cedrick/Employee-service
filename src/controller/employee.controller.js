@@ -107,3 +107,52 @@ exports.delete = (req, res) => {
           });
         })
 }
+
+exports.assignDepartment = async (req, res) => {
+  try
+  {
+    const id = req.params.id;
+    const employee = await Employee.findByPk(id)
+    if(!employee)
+    {
+      return res.status(404).send({ message: "Employee not found" });
+    }
+    const updatedEmployee = {
+      name : employee.name,
+      firstName : employee.firstName,
+      phone : employee.phone,
+      address: employee.address,
+      email : employee.email,
+      hireDate : employee.hireDate,
+      departmentId : req.body.departmentId
+  }
+
+    
+    Employee.update(updatedEmployee, {
+        where: {id: id}
+    })
+    .then(num => {
+         if(num == 1){
+            res.send({
+                message : "Employee updated successfully"
+            });
+        }else{
+            res.send({
+            message : `Cannot update Employee with id=${id}. Maybe employee was not found or employees is empty`
+            })
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error updating Employee with id=" + id
+        });
+    })   
+  }
+  catch(error)
+  {
+      res.status(500).send({
+        message: `Error while assigning department to the employee`
+      }
+      )
+  }    
+}
